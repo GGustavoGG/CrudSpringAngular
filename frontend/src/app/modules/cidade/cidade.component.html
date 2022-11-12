@@ -1,0 +1,71 @@
+<block-ui>
+<form>
+    <p-toast></p-toast>
+    <div class="formulario p-shadow-5">
+        <div class="p-grid p-fluid">
+            <div class="p-col-12">
+                <h2 *ngIf="!atualizarCidade">Cadastro de Cidade</h2>
+                <h2 *ngIf="atualizarCidade">Atualização de Cidade</h2>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-map-marker"></i></span>
+                    <input type="text" [(ngModel)]="cidade.nome" [ngModelOptions]="{standalone: true}" pInputText placeholder="Nome">         
+                </div>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-map"></i></span>
+                    <input type="text" [(ngModel)]="cidade.estado" [ngModelOptions]="{standalone: true}" pInputText placeholder="Estado">      
+                </div>
+            </div>     
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-users"></i></span>
+                    <input type="number" [(ngModel)]="cidade.qtdHabitantes" [ngModelOptions]="{standalone: true}" pInputText placeholder="Quantidade de Habitantes">      
+                </div>
+            </div>
+        </div>
+        <div class="p-d-flex">
+            <div class="p-mr-2">
+                <!--Button de Cadastro-->
+                <button *ngIf="!atualizarCidade" pButton (click)="create()" pRipple type="button" label="Cadastrar Nova Cidade"></button>
+                <!--Button de atualizat-->
+                <button *ngIf="atualizarCidade" pButton (click)="atualizar()" pRipple type="button" label="Atualizar Cidade"></button>
+            </div>
+            <div class="p-mr-2">
+                <!--Button de limpar-->
+                <button *ngIf="!atualizarCidade" pButton (click)="limpar()" pRipple type="button" label="Limpar" class="p-button-warning"></button>
+                <!--Button de limpar-->
+                <button *ngIf="atualizarCidade" pButton (click)="cancelarAtualizacao()" pRipple type="button" label="Cancelar" class="p-button-warning"></button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="ui-g">
+    <div class="ui-g-12">
+        <p-table [value]="cidades">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Code</th>
+                    <th>Nome</th>
+                    <th>Estado</th>
+                    <th>População</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cidades>
+                <tr>
+                    <td>{{cidades.id}}</td>
+                    <td>{{cidades.nome}}</td>
+                    <td>{{cidades.estado}}</td>
+                    <td>{{cidades.qtdHabitantes}}</td>
+                    <td><button (click)="requisitaAtualizacao(cidades.id)" pButton pRipple type="button" icon="pi pi-pencil"class="p-button-warning"></button></td>
+                    <td><button (click)="delete(cidades.id)" pButton pRipple type="button" icon="pi pi-trash"class="p-button-danger"></button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+</block-ui>

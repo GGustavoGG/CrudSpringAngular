@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+    <changeSet id="202105040953-1" author="ggustavogg">
+        <createTable tableName="cidade">
+            <column autoIncrement="true" name="id" type="BIGINT(20)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="nome" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="qtd_habitantes" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="BIGINT"
+                columnName="id"
+                incrementBy="1"
+                startWith="1"
+                tableName="cidade"/>
+    </changeSet>
+    <changeSet id="202105050902-2" author="ggustavogg">
+        <setTableRemarks remarks="Tabela que armazena as informações sobre as cidades"
+                         tableName="cidade"/>
+        <setColumnRemarks columnName="id"
+                          remarks="Armazena o indentificador unico daquele cidade"
+                          tableName="cidade"/>
+        <setColumnRemarks columnName="nome"
+                          remarks="Armazena o nome daquela cidade"
+                          tableName="cidade"/>
+        <setColumnRemarks columnName="qtd_habitantes"
+                          remarks="Armazena a quantidade de habitantes daquela cidade"
+                          tableName="cidade"/>
+        <setColumnRemarks columnName="estado"
+                          remarks="Armazena o estado ao qual aquela cidade pertence"
+                          tableName="cidade"/>
+    </changeSet>
+</databaseChangeLog>

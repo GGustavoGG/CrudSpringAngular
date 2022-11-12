@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+    <changeSet id="202105050953-1" author="ggustavogg">
+        <createTable tableName="pessoa" remarks="Tabela que armazena as informações de uma entidade pessoa">
+            <column autoIncrement="true" name="id" type="BIGINT(20)" remarks="Armazena o identificador unico da pessoa">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="nome" type="VARCHAR(64)" remarks="Armazena o nome da pessoa">
+                <constraints nullable="false"/>
+            </column>
+            <column name="apelido" type="VARCHAR(64)" remarks="Armazena o apelido da pessoa">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_coracao" type="VARCHAR(64)" remarks="Armazena o nome do time de coração da pessoa">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpf" type="VARCHAR(14)" remarks="Armazena o cpf da pessoa">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hobbie" type="VARCHAR(64)" remarks="Armazena o nome do hobbie da pessoa">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cidade_id" type="BIGINT(20)" remarks="Armazena a foreing key">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="BIGINT"
+                columnName="id"
+                incrementBy="1"
+                startWith="1"
+                tableName="cidade"/>
+        <addForeignKeyConstraint  baseColumnNames="cidade_id"
+                                  baseTableName="pessoa"
+                                  constraintName="cidade_id"
+                                  referencedColumnNames="id"
+                                  referencedTableName="cidade"
+                                  onDelete="CASCADE"/>
+
+    </changeSet>
+</databaseChangeLog>

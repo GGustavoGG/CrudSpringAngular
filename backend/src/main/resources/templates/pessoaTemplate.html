@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+
+        body{
+            width: 95%;
+            color: #3b3636;
+            font-family: "Agenda", sans-serif;
+        }
+
+        .conteudo{
+            margin: 0 auto;
+        }
+
+        .titulo{
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        table{
+            width: 100%;
+            border-style: solid;
+            border-collapse: collapse;
+        }
+
+        .grey {
+            background-color: #eaeaea;
+        }
+
+        th,td {
+            padding: 15px 5px;
+        }
+
+        th {
+            text-align: center;
+            border-bottom: 0.5px solid #3b3636;
+            box-shadow: 0.5px 0.5px 0.5px #3b363633;
+        }
+
+        .forte {
+            font-weight: bold;
+            color: black;
+        }
+        .hr-custom{
+            width: 50%;
+            margin-top: -18px;
+            margin-bottom: 45px;
+        }
+    </style>
+</head>
+<body>
+<h1 class="titulo">Relatório de Pessoa</h1>
+<hr class="hr-custom"></hr>
+<div class="conteudo">
+    <table>
+        <thead>
+        <tr>
+            <th>Dados Pessoais</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="grey">
+            <td><span class="forte">Nome:</span> <span th:text="${nome}"></span></td>
+        </tr>
+        <tr>
+            <td><span class="forte">Apelido:</span> <span th:text="${apelido}"></span></td>
+        </tr>
+        <tr class="grey">
+            <td><span class="forte">Time do Coração:</span> <span th:text="${timeCoracao}"></span></td>
+        </tr>
+        <tr>
+            <td><span class="forte">Hobbie:</span> <span th:text="${hobbie}"></span></td>
+        </tr>
+        <tr class="grey">
+            <td><span class="forte">CPF:</span> <span th:text="${cpf}"></span></td>
+        </tr>
+        <tr>
+            <td><span class="forte">Cidade:</span> <span th:text="${cidade}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

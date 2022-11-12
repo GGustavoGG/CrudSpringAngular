@@ -1,0 +1,95 @@
+<block-ui>
+<form>
+    <p-toast></p-toast>
+    <div class="formulario p-shadow-5">
+        <div class="p-grid p-fluid">
+            <div class="p-col-12">
+                <h2 *ngIf="!atualizarPessoa">Cadastro de Pessoa</h2>
+                <h2 *ngIf="atualizarPessoa">Atualizar Pessoa</h2>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input [(ngModel)]="pessoaCadastro.nome" type="text" pInputText placeholder="Nome" [ngModelOptions]="{standalone: true}">         
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user-plus"></i></span>
+                    <input [(ngModel)]="pessoaCadastro.apelido" type="text" pInputText placeholder="Apelido" [ngModelOptions]="{standalone: true}">      
+                </div>
+            </div>     
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-star"></i></span>
+                    <input [(ngModel)]="pessoaCadastro.timeCoracao" type="text" pInputText placeholder="Time do Coração" [ngModelOptions]="{standalone: true}">      
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                    <input [(ngModel)]="pessoaCadastro.cpf" type="text" pInputText placeholder="CPF" [ngModelOptions]="{standalone: true}">         
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-heart"></i></span>
+                    <input [(ngModel)]="pessoaCadastro.hobbie" type="text" pInputText placeholder="Hobbie" [ngModelOptions]="{standalone: true}">        
+                </div>
+            </div> 
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-map-marker"></i></span>
+                <p-dropdown [options]="cidades" [(ngModel)]="pessoaCadastro.cidade" placeholder="Cidades" [ngModelOptions]="{standalone: true}" optionLabel="nome"></p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="p-d-flex">
+            <div class="p-mr-2">
+                <!--Button de Cadastrar-->
+                <button *ngIf="!atualizarPessoa" (click)="create()" pButton pRipple type="button" label="Cadastrar Nova Pessoa"></button>
+                <!--Button de Atualizar-->
+                <button *ngIf="atualizarPessoa" (click)="atualizar()" pButton pRipple type="button" label="Atualizar Pessoa"></button>
+            </div>
+            <div class="p-mr-2">
+                <!--Button de limpar-->
+                <button *ngIf="!atualizarPessoa" (click)="limpar()" pButton pRipple type="button" label="Limpar" class="p-button-warning"></button>
+                <!--Button de Cancelar-->
+                <button *ngIf="atualizarPessoa" (click)="cancelar()" pButton pRipple type="button" label="Cancelar" class="p-button-warning"></button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="ui-g">
+    <div class="ui-g-12">
+        <p-table [value]="pessoas">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>Time Coração</th>
+                    <th>Hobbie</th>
+                    <th>CPF</th>
+                    <th>Cidade</th>
+                    <th>Relatório</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pessoas>
+                <tr>
+                    <td>{{pessoas.nome}}</td>
+                    <td>{{pessoas.apelido}}</td>
+                    <td>{{pessoas.timeCoracao}}</td>
+                    <td>{{pessoas.hobbie}}</td>
+                    <td>{{pessoas.cpf}}</td>
+                    <td>{{pessoas.cidade.nome}}</td>
+                    <td><button (click)="relatorio(pessoas.id)" pButton pRipple type="button" icon="pi pi-print"class="p-button-info"></button></td>                    
+                    <td><button (click)="requisitaAtualizacao(pessoas.id)" pButton pRipple type="button" icon="pi pi-pencil"class="p-button-warning"></button></td>
+                    <td><button (click)="delete(pessoas.id)" pButton pRipple type="button" icon="pi pi-trash"class="p-button-danger"></button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+</block-ui>
